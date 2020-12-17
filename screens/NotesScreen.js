@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, LogBox } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebaseDB";
-LogBox.ignoreLogs(["Setting a timer"]);
+// LogBox.ignoreLogs(["Setting a timer"]);
 
 export default function NotesScreen({ navigation, route }) 
 {
@@ -70,15 +70,9 @@ export default function NotesScreen({ navigation, route })
         title: route.params.text,
         done: false,
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        // An alternative will be:
-        // created: Date.now().toString(),
-
-        // No more id line.
-        // id: notes.length.toString(), 
+        // An alternative will be: created: Date.now().toString(),
       };
       db.add(newNote);
-      // firebase.firestore().collection("todos").add(newNote);
-      // setNotes([...notes, newNote]);
     }
   }, [route.params?.text]);
 
@@ -91,18 +85,19 @@ export default function NotesScreen({ navigation, route })
   function deleteNote(id) 
   {
     console.log("Deleting " + id);
-    // To delete that item, we filter out the item we don't want
+    // To delete that item, we filter out the item we don't want.
     // .get fetches a snapshot of the id.
-
-    // This is much simpler now that we have the Firestore ID.
+    // This is much simpler now that we have the Firestore id.
     db.doc(id).delete();
   }
 
   // The function to render each row in our FlatList
-  function renderItem({ item }) {
+  function renderItem({ item }) 
+  {
     return (
       <View
-        style={{
+        style=
+        {{
           padding: 10,
           paddingTop: 20,
           paddingBottom: 20,
@@ -111,7 +106,7 @@ export default function NotesScreen({ navigation, route })
           flexDirection: "row",
           justifyContent: "space-between",
         }}
-      >
+        >
         <Text>{item.title}</Text>
         <TouchableOpacity onPress={() => deleteNote(item.id)}>
           <Ionicons name="trash" size={16} color="#944" />
@@ -133,7 +128,8 @@ export default function NotesScreen({ navigation, route })
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: 
+  {
     flex: 1,
     backgroundColor: "#ffc",
     alignItems: "center",
