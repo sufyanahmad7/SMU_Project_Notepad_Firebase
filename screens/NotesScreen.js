@@ -72,7 +72,11 @@ export default function NotesScreen({ navigation, route })
         created: firebase.firestore.FieldValue.serverTimestamp(),
         // An alternative will be: created: Date.now().toString(),
       };
-      db.add(newNote);
+      db.add(newNote); // Creates an item newNote with the properties.
+      console.log(newNote);
+
+      // Reset the params which contains the previous text.
+      route.params.text = "";
     }
   }, [route.params?.text]);
 
