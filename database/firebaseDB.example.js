@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import firestore from 'firebase/firestore'
+import { SafeAreaFrameContext } from 'react-native-safe-area-context';
 
 const firebaseConfig = 
 {
